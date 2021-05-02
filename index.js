@@ -2,8 +2,14 @@ require("dotenv").config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
+console.clear();
+
+client.on("ready", () => {
+    console.log(`Bot connected: ${client.user.tag}`);
+    console.log("Connected to:");
+    client.guilds.cache.forEach(g => {
+        console.log(" - " + g.name)
+    });
 });
 
 client.on('message', msg => {
