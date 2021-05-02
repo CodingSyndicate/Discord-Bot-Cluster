@@ -7,8 +7,8 @@ let servers = {};
 let commands = {};
 //const permission = require("./permission");
 
-function load(path, parent="") {
-let content = fs.readdirSync(path);
+function load(path, parent = "") {
+    let content = fs.readdirSync(path);
 
     for (let file of content) {
         let fullpath = join(path, file);
