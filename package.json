@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/CodingSyndicate/Discord-Bot-Template#readme",
   "dependencies": {
-    "discord.js": "^12.5.3"
+    "discord.js": "^12.5.3",
+    "dotenv": "^8.2.0"
   }
 }
