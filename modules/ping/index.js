@@ -3,7 +3,6 @@ const { MessageReaction, User, Message } = require("discord.js");
 module.exports = {
     name: "Ping",
     commands: {
-        help,
         ping
     },
     events: {
@@ -12,16 +11,8 @@ module.exports = {
     }
 }
 
-function help(message) {
-    const helpMessage = "\
-    Ping: \
-    - ping \
-    ";
-    message.member.voice.channel.send(helpMessage);
-}
-
 function ping(message) {
-    message.member.voice.channel.send("Pong!");
+    message.channel.send("Pong!");
 }
 
 /**
