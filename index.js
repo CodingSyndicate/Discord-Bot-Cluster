@@ -1,8 +1,14 @@
 require("dotenv").config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
-
+const moduleManager = require("./moduleManager");
 console.clear();
+
+moduleManager.loadModules();
+
+moduleManager.registerModules(client);
+
+moduleManager.registerCommands(client);
 
 client.on("ready", () => {
     console.log(`Bot connected: ${client.user.tag}`);
@@ -10,12 +16,6 @@ client.on("ready", () => {
     client.guilds.cache.forEach(g => {
         console.log(" - " + g.name)
     });
-});
-
-client.on('message', msg => {
-    if (msg.content === 'ping') {
-        msg.reply('Pong!');
-    }
 });
 
 client.login(process.env.TOKEN);
