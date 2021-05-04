@@ -1,0 +1,12 @@
+{
+    "bots": [
+        {
+            "name": "NotifyMe",
+            "token": "asd",
+            "modules": [
+                "noot",
+                "notify"
+            ]
+        }
+    ]
+}
