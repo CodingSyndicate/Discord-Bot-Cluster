@@ -1,23 +1,22 @@
 {
-  "name": "discord-bot-template",
+  "name": "discord-bot-cluster",
   "version": "0.0.0",
-  "description": "A template for our discord bot cluster",
+  "description": "A framework to manage several discord bots at once with dynamic modules",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon src/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CodingSyndicate/Discord-Bot-Template.git"
+    "url": "git+https://github.com/CodingSyndicate/Discord-Bot-Cluster.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/CodingSyndicate/Discord-Bot-Template/issues"
+    "url": "https://github.com/CodingSyndicate/Discord-Bot-Cluster/issues"
   },
-  "homepage": "https://github.com/CodingSyndicate/Discord-Bot-Template#readme",
+  "homepage": "https://github.com/CodingSyndicate/Discord-Bot-Cluster#readme",
   "dependencies": {
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0"
