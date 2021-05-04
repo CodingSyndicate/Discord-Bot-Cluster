@@ -20,7 +20,7 @@ module.exports = class ModuleManager {
         this.loadModules();
         this.registerModules();
         this.registerCommands();
-        console.log(">>> Finished loading. ");
+        console.log(">>> Finished loading.");
     }
 
     /**
@@ -34,6 +34,9 @@ module.exports = class ModuleManager {
             const modulePath = folderPath + path.sep + file;
             try {
                 let module = require(modulePath);
+                if (!module.name) {
+                    throw "Module has a no name, failure!";
+                }
                 this.modulesMap[module.name] = module;
             } catch (error) {
                 console.error("Module at " + modulePath + " failed to load!");
@@ -48,7 +51,7 @@ module.exports = class ModuleManager {
     registerModules() {
         console.log("Registered Modules:");
         // for every module
-        for (const [moduleName, module] of Object.entries(this.modulesMap)) {
+        for (const [moduleKey, module] of Object.entries(this.modulesMap)) {
 
             // register every command of the module
             if (module.commands) {
@@ -107,27 +110,20 @@ module.exports = class ModuleManager {
      * @param {Message} message 
      */
     commandHandler(message) {
-        const userId = this.client.user.id;
-
-        if (message.mentions.users.has(userId)) {
-            let contents = message.cleanContent.split(" ");
-
-
-            if (contents.length >= 5) {
-                message.channel.send("🖕");
-                message.channel.send("Was muckst du murruck????!!!");
-                return;
-            }
-
-            for (const content of contents) {
-                if (content) {
-                    if (this.commandsMap[content]) {
-                        this.commandsMap[content](message);
-                    } else {
-                        message.channel.send("Sorry, aber ich kenne diesen Befehl:" + content + " nicht.");
-                    }
+        // check if the message is send to the bot
+        if (message.mentions.users.has(this.client.user.id)) {
+            // split message by space
+            let content = message.cleanContent.split(" ");
+            // get rid of the bot name
+            content.shift();
+            if (content) {
+                if (this.commandsMap[content]) {
+                    this.commandsMap[content](message);
+                } else {
+                    message.channel.send("Sorry, aber ich kenne diesen Befehl:" + content + " nicht.");
                 }
             }
+            message.react("✅");
         }
     }
 }

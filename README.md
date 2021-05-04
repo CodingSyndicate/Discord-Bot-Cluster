@@ -1,5 +1,16 @@
-# Discord-Bot-Template
-A template for our discord bot cluster
+# Discord-Bot-Cluster
+A framework to manage several discord bots at once with dynamic modules.
+
+## Idee
+A cluster for managing multiple discord bots and their modules.
+
+## Modules
+Since the underlaying discord bots are provided, modules can now implement certain functionalities to them.
+A module is defined by a folder in the modules folder. The folder name will define the modules key, which get added to the modules map at startup pointing to the module.
+Inside of a module the index.js file needs to export certain requirements:
+- name: The name the module should be called
+- commands: an object containing functions that get registered by the ModuleManager, so when ever the name of the function gets called like a command, that specific function will be executed
+- events: an object containing function that get registered by the ModuleManager, so when ever the event (provided by the function name) gets triggered, that specific function will be executed. Note: The function has to be called like an event, which can be found here: https://discord.js.org/#/docs/main/stable/class/Client
 
 ## Recommended VS Code Extensions
 - ESLint - Dirk Baeumer
