@@ -1,15 +1,26 @@
 console.clear();
 require("dotenv").config();
 
-// Discord
-const Discord = require('discord.js');
-const client = new Discord.Client();
+// BotsManager
+const BotManager = require("./BotManager");
+const botManager = new BotManager();
 
 // ModuleManager
 const ModuleManager = require("./ModuleManager");
 const moduleManager = new ModuleManager(client);
 
 moduleManager.register();
+
+
+
+
+
+
+
+
+
+
+
 
 client.on("ready", () => {
     console.log(`Bot connected: ${client.user.tag}`);
