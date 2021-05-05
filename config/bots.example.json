@@ -1,12 +1,17 @@
-{
-    "bots": [
-        {
-            "name": "NotifyMe",
-            "token": "asd",
-            "modules": [
-                "noot",
-                "notify"
-            ]
-        }
-    ]
-}
+[
+    {
+        "name": "NotifyMe",
+        "modules": [
+            "notify",
+            "ping"
+        ],
+        "token": "<token here>"
+    },
+    {
+        "name": "Pingu",
+        "modules": [
+            "noot"
+        ],
+        "token": "<token here>"
+    }
+]

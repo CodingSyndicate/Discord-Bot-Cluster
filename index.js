@@ -1,33 +1,13 @@
-console.clear();
-require("dotenv").config();
+const fileLib = require("./lib/file");
+const BotManager = require("./BotManager");
+const logger = require("./lib/logger");
+logger.init();
+
+// Read config
+let botsConfig = fileLib.loadConfig("bots");
+logger.log("index", "Bots Config Loaded");
+// for later we could establish connection to the backend here
 
 // BotsManager
-const BotManager = require("./BotManager");
-const botManager = new BotManager();
-
-// ModuleManager
-const ModuleManager = require("./ModuleManager");
-const moduleManager = new ModuleManager(client);
-
-moduleManager.register();
-
-
-
-
-
-
-
-
-
-
-
-
-client.on("ready", () => {
-    console.log(`Bot connected: ${client.user.tag}`);
-    console.log("Connected to:");
-    client.guilds.cache.forEach(g => {
-        console.log(" - " + g.name)
-    });
-});
-
-client.login(process.env.TOKEN);
+const botManager = new BotManager(botsConfig);
+botManager.allLogin();
