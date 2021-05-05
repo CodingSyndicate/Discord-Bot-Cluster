@@ -88,18 +88,22 @@ module.exports = class Bot {
      */
     commandHandler(message) {
         // check if the message is send to the bot
-        if (message.mentions.users.has(this.client.user.id)) {
+        if (message.mentions.users.has(this.client.user.id) || (message.channel.type == "dm" && message.author.id !== this.client.user.id)) {
             // split message by space
-            let parameters = message.cleanContent.split(" ");
+            // let parameters = message.cleanContent.split(/[ ]+/).filter(el => el !== " " && el !== "");
+            let parameters = message.cleanContent.split(/[ ]+/g);
             // get rid of the bot name
-            parameters.shift();
+            if (message.channel.type !== "dm"){
+                parameters.shift();
+            }
             let command = parameters[0];
 
             if (parameters) {
                 if (this.commands[command]) {
                     this.commands[command](message, parameters.shift());
                 } else {
-                    message.channel.send("Sorry, aber ich kenne diesen Befehl: " + command + " nicht.");
+                    message.channel.send("Sorry, aber ich kenne diesen Befehl: <" + command + "> nicht.");
+                    message.channel.send(parameters.join(","));
                 }
             }
             if (this.client.token)

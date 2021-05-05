@@ -3,7 +3,6 @@ const { join, basename } = require("path");
 
 module.exports = function (bot) {
 
-
     let events = {};
     let actions = {};
     let users = {};
@@ -102,6 +101,11 @@ module.exports = function (bot) {
         console.log("Events loaded: ");
         console.log(events);
     }
+
+    function actionExecuter(actionName, ...props) {
+        return require("./actions/" + actionName)(...props);
+    }
+    
 
     function loadActions(path = "./Actions") {
         let fullpath = join(__dirname, path);
