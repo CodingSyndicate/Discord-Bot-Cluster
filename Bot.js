@@ -4,8 +4,8 @@ const logger = require("./lib/logger");
 
 module.exports = class Bot {
     // Private Attributes
-    #token;
-    #client;
+    token;
+    client;
 
     // Public Attribute
     modules;
@@ -35,6 +35,9 @@ module.exports = class Bot {
         logger.log(this, "initialized!", this.modules);
     }
 
+    /**
+     * Login to discord servers
+     */
     login() {
         try {
             this.client.login(this.token);
@@ -44,12 +47,17 @@ module.exports = class Bot {
         }
     }
 
+    /**
+     * Logout of discord servers
+     */
     logout() {
-        logger.log(this, "logging out...");
         this.client.destroy();
         logger.log(this, "logged out!");
     }
 
+    /**
+     * Register modules to the command Handler and the events of the client
+     */
     registerModules() {
         this.modules.forEach(module => {
             try {
@@ -74,6 +82,10 @@ module.exports = class Bot {
         this.client.on("message", (message) => { this.commandHandler(message) });
     }
 
+    /**
+     * 
+     * @param {Discord.Message} message 
+     */
     commandHandler(message) {
         // check if the message is send to the bot
         if (message.mentions.users.has(this.client.user.id)) {

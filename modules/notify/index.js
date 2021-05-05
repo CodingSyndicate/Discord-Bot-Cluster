@@ -6,6 +6,7 @@ module.exports = function (bot) {
 
     let events = {};
     let actions = {};
+    let users = {};
 
 
     /**
@@ -14,17 +15,20 @@ module.exports = function (bot) {
      */
     function notify(message) {
         console.log("User " + message.author.username + " notified me!");
-        message.author.send('Hello there!');
+
     }
 
     /**
      * 
-     * @param {*} params 
+     * @param {Message} message Message Object from the command
+     * @param {Array<String>} params An array of parameters
      */
-    function register(params) {
-
-
-
+    function register(message, params) {
+        message.author.send('You have been registered!');
+        if (!users)
+            users = {};
+        users[message.author.username] = message.author;
+        message.react('❕');
     }
 
     /**
@@ -51,7 +55,14 @@ module.exports = function (bot) {
      * @param {Presence} newPresence
      */
     function presenceUpdate(oldPresence, newPresence) {
-        console.log(newPresence.user.username + " changed status to " + newPresence.status);
+        if (oldPresence?.status !== newPresence.status) {
+            console.log(newPresence.user.username + " changed status to " + newPresence.status);
+            for (const [username, user] of Object.entries(users)) {
+                if (username !== newPresence.user.username) {
+                    user.send(newPresence.user.username + " changed status to " + newPresence.status);
+                }
+            }
+        }
     }
 
     /**
