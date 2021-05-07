@@ -76,6 +76,60 @@ function emojiUpdate(oldEmoji, newEmoji) {
 
 }
 
-function error(params) {
+/**
+ * Emitted when the client encouters an error
+ * @param {Error} error The error encountered
+ */
+function error(error) {
 
+}
+
+/**
+ * Emitted whenever a member is banned from a guild.
+ * @param {Guild} guild The guild that the ban occurred in
+ * @param {User} user The user that was banned
+ */
+function guildBanAdd(guild, user) {
+    
+}
+
+/**
+ * Emitted whenever a member is unbanned from a guild.
+ * @param {Guild} guild The guild the unban occured in
+ * @param {User} user The user that was unbanned
+ */
+function guildBanRemove(guild, user) {
+
+}
+
+/**
+ * Emitted whenever the client joins a guild.
+ * @param {Guild} guild The created guild
+ */
+function guildCreate(guild) {
+    
+}
+
+/**
+ * Emitted whenever a guild kicks the client or the guild is deleted/left
+ * @param {Guild} guild The guild that was deleted
+ */
+function guildDelete(guild) {
+    
+}
+
+/**
+ * Emitted whenever a guild integration is updated
+ * @param {Guild} guild The guild whose integrations were updated
+ */
+function guildIntegrationsUpdate(guild) {
+    
+}
+
+/**
+ * Emitted whenever a user joins a guild
+ * @param {GuildMember} member The member that has joined a guild
+ */
+function guildMemberAdd(member) {
+    
 }
