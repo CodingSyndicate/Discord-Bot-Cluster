@@ -5,6 +5,12 @@ A framework to manage several discord bots at once with dynamic modules.
 A cluster for managing multiple discord bots and their modules.
 
 ## Modules
+- [Noot](https://github.com/CodingSyndicate/Discord-Bot-Cluster/tree/main/modules/noot)
+- [Notify](https://github.com/CodingSyndicate/Discord-Bot-Cluster/tree/main/modules/notify)
+- [Ping](https://github.com/CodingSyndicate/Discord-Bot-Cluster/tree/main/modules/ping)
+- [Stats](https://github.com/CodingSyndicate/Discord-Bot-Cluster/tree/main/modules/stats)
+
+## Modules Concept
 Since the underlaying discord bots are provided, modules can now implement certain functionalities to them.
 A module is defined by a folder in the modules folder. The folder name will define the modules key, which get added to the modules map at startup pointing to the module.
 Inside of a module the index.js file needs to export certain requirements:
