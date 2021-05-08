@@ -39,3 +39,23 @@ index
 - typingStart
 - userUpdate
 - voiceStateUpdate
+
+
+## Stats Collected
+- Server joined
+- Last Login
+- Messages
+- Recations send
+- Reactions received
+- Mentions
+- active Voice Time (in nicht afk channels && unmuted)
+- muted voice time (in nicht afk channels && muted)
+- connected Voice Time
+
+
+## Score
+Total Score würde ich berechnen über eine Formel und nicht abspeichern. 
+
+## Titel
+- Der viel Schwätzer (der der am meisten voice time hatte)
+- Zensurminister (der der am meisten Nachrichten gelöscht hat)
