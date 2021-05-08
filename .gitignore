@@ -107,3 +107,4 @@ dist
 .env
 
 config/bots.json
+data/
