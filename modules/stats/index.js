@@ -15,7 +15,8 @@ module.exports = function (bot) {
         totalReactionsRecieved: 0,
         totalMentions: 0,
         totalVoiceTime: 0,
-        totalScore: 0
+        totalScore: 0,
+        level: 0
     };
 
     /**
@@ -30,8 +31,7 @@ module.exports = function (bot) {
         logger.log("Stats", "Message received! userData:", userData);
         // TotalMentions
         console.log(message.mentions.users);
-        for (const id of Object.keys(message.mentions.users)) {
-            console.log(id);
+        for (const id of message.mentions.users.keys()) {
             createUser(id);
             userData[id].totalMentions += 1;
         }
@@ -88,6 +88,21 @@ module.exports = function (bot) {
     }
 
     /**
+     * create user if not exists
+     * @param {Message} message id of user
+     */
+     function showStats(message) {
+        let user = userData[message.author.id]
+
+        logger.log("Stats", "showStats", message.channel.guild);
+
+        let statsString = JSON.stringify(user, null, 4).replaceAll(/[\"{},]/g, '').replace(/\s{4,}/gm,"\n▫️");
+        let response = `${message.author} your current stats are:\n
+                        ${statsString}`;
+        message.channel.send(response);
+    }
+
+    /**
      * Merges the read userData with the template once on startup to add potential new properties
      */
     function migrate() {
@@ -100,6 +115,7 @@ module.exports = function (bot) {
     return {
         name: "Stats",
         commands: {
+            me: showStats,
         },
         events: {
             message,
