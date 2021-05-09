@@ -93,7 +93,7 @@ module.exports = class Bot {
             // let parameters = message.cleanContent.split(/[ ]+/).filter(el => el !== " " && el !== "");
             let parameters = message.cleanContent.split(/[ ]+/g);
             // get rid of the bot name
-            if (message.channel.type !== "dm"){
+            if (message.channel.type !== "dm") {
                 parameters.shift();
             }
             let command = parameters[0];
@@ -103,7 +103,6 @@ module.exports = class Bot {
                     this.commands[command](message, parameters.shift());
                 } else {
                     message.channel.send("Sorry, aber ich kenne diesen Befehl: <" + command + "> nicht.");
-                    message.channel.send(parameters.join(","));
                 }
             }
             if (this.client.token)

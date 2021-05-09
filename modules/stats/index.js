@@ -25,9 +25,9 @@ module.exports = function (bot) {
      */
     function message(message) {
         createUser(message.author.id);
-        
+
         // TotalMessages
-        userData[message.author.id].totalMessages += 1; 
+        userData[message.author.id].totalMessages += 1;
         logger.log("Stats", "Message received! userData:", userData);
         // TotalMentions
         console.log(message.mentions.users);
@@ -56,12 +56,12 @@ module.exports = function (bot) {
      * @param {VoiceState} oldVoiceState
      * @param {VoiceState} newVoiceState
      */
-     function voiceStateUpdate(oldVoiceState, newVoiceState) {
+    function voiceStateUpdate(oldVoiceState, newVoiceState) {
         createUser(oldVoiceState.member.id);
         if (newVoiceState.channel) {
             userData[oldVoiceState.member.id].lastLogin = new Date();
         } else {
-            userData[oldVoiceState.member.id].totalVoiceTime += (new Date()).getTime() - userData[oldVoiceState.member.id].lastLogin.getTime(); 
+            userData[oldVoiceState.member.id].totalVoiceTime += (new Date()).getTime() - userData[oldVoiceState.member.id].lastLogin.getTime();
         }
         saveUserData();
     }
@@ -71,8 +71,8 @@ module.exports = function (bot) {
      * @param {number} id id of user
      */
     function createUser(id) {
-        if(userData[id] == null || userData[id] === undefined){
-            userData[id] = {...userDataTemplate};
+        if (userData[id] == null || userData[id] === undefined) {
+            userData[id] = { ...userDataTemplate };
         }
     }
 
@@ -80,7 +80,7 @@ module.exports = function (bot) {
      * Saves userData to the data file everytime when the max event count was reached
      */
     function saveUserData() {
-        if(eventCounter === MAX_EVENT_COUNT - 1) {
+        if (eventCounter === MAX_EVENT_COUNT - 1) {
             fileLib.storeData(USER_DATA_FILE_NAME, userData);
             logger.log("Stats", "Saved UserData!");
         }
@@ -91,13 +91,13 @@ module.exports = function (bot) {
      * create user if not exists
      * @param {Message} message id of user
      */
-     function showStats(message) {
+    function showStats(message) {
         let user = userData[message.author.id]
 
         logger.log("Stats", "showStats", message.channel.guild);
 
-        let statsString = JSON.stringify(user, null, 4).replaceAll(/[\"{},]/g, '').replace(/\s{4,}/gm,"\n▫️");
-        let response = `${message.author} your current stats are:\n
+        let statsString = JSON.stringify(user, null, 4).replaceAll(/[\"{},]/g, '').replace(/\s{4,}/gm, "\n▫️");
+        let response = `${message.author} your current stats are:
                         ${statsString}`;
         message.channel.send(response);
     }
@@ -107,7 +107,7 @@ module.exports = function (bot) {
      */
     function migrate() {
         for (const userId of Object.keys(userData)) {
-            userData[userId] = {...userDataTemplate, ...userData[userId]};
+            userData[userId] = { ...userDataTemplate, ...userData[userId] };
         }
     }
     migrate();
